@@ -13,6 +13,7 @@ Written and published on Medium. This repo holds the source and the images.
 | [Sealed Classes](dart-sealed-class.md) | Closed type sets, exhaustive `switch`, and `sealed` vs `abstract` |
 | [Isolates](dart-isolates.md) | True parallelism, message passing, `compute()`, and isolate vs `async`/`await` |
 | [Future vs Stream](dart-future-vs-stream.md) | One value vs many, the event loop, microtasks vs events, single vs broadcast |
+| [WebSockets in Flutter](flutter-websocket.md) | REST vs WebSocket, the handshake, the connection lifecycle, reconnect & heartbeat |
 
 ## About the images
 
