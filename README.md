@@ -14,6 +14,8 @@ Written and published on Medium. This repo holds the source and the images.
 | [Isolates](dart-isolates.md) | True parallelism, message passing, `compute()`, and isolate vs `async`/`await` |
 | [Future vs Stream](dart-future-vs-stream.md) | One value vs many, the event loop, microtasks vs events, single vs broadcast |
 | [WebSockets in Flutter](flutter-websocket.md) | REST vs WebSocket, the handshake, the connection lifecycle, reconnect & heartbeat |
+| [Null Safety](dart-null-safety.md) | Non-nullable types, `?.` `??` `!` `??=`, `late`, and sound null safety |
+| [Mixin vs Abstract vs Interface](dart-mixin-abstract-interface.md) | `extends` vs `implements` vs `with`, and when to use each |
 
 ## About the images
 
