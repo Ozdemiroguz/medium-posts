@@ -16,6 +16,8 @@ Written and published on Medium. This repo holds the source and the images.
 | [WebSockets in Flutter](flutter-websocket.md) | REST vs WebSocket, the handshake, the connection lifecycle, reconnect & heartbeat |
 | [Null Safety](dart-null-safety.md) | Non-nullable types, `?.` `??` `!` `??=`, `late`, and sound null safety |
 | [Mixin vs Abstract vs Interface](dart-mixin-abstract-interface.md) | `extends` vs `implements` vs `with`, and when to use each |
+| [The Three Trees](flutter-three-trees.md) | Widget, Element, RenderObject — and why `const`, keys, and cheap rebuilds work |
+| [Records & Pattern Matching](dart-records-patterns.md) | Dart 3 records, destructuring, pattern `switch`, guards, and `if-case` |
 
 ## About the images
 
