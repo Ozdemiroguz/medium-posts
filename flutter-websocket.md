@@ -73,6 +73,72 @@ channel.sink.close();
 
 One key point for Flutter: **close the socket when you're done** — for example in `dispose()` when a screen closes. If you don't, you leak the connection and keep receiving data in the background.
 
+## Putting it together: a small socket service
+
+Here is a compact service that shows the real patterns in one place — listening, sending, heartbeat, reconnect with backoff, and cleanup:
+
+```dart
+class SocketService {
+  WebSocketChannel? _channel;
+  StreamSubscription? _sub;
+  Timer? _heartbeat;
+  int _retryDelay = 1; // seconds
+
+  void connect() {
+    _channel = WebSocketChannel.connect(Uri.parse('wss://example.com/socket'));
+
+    _sub = _channel!.stream.listen(
+      _onMessage,
+      onError: (_) => _reconnect(),
+      onDone: _reconnect,        // fires when the socket closes
+    );
+
+    _startHeartbeat();
+    _retryDelay = 1;             // reset backoff after a good connect
+  }
+
+  void _onMessage(dynamic data) {
+    if (data == 'pong') return;  // heartbeat reply, ignore
+    print('Got: $data');
+  }
+
+  void send(String msg) => _channel?.sink.add(msg);
+
+  void _startHeartbeat() {
+    _heartbeat = Timer.periodic(const Duration(seconds: 15), (_) {
+      _channel?.sink.add('ping');
+    });
+  }
+
+  void _reconnect() {
+    _cleanUp();
+    Future.delayed(Duration(seconds: _retryDelay), connect);
+    _retryDelay = (_retryDelay * 2).clamp(1, 32); // exponential backoff, capped at 32s
+  }
+
+  void _cleanUp() {
+    _heartbeat?.cancel();
+    _sub?.cancel();
+    _channel?.sink.close();
+  }
+
+  void dispose() => _cleanUp(); // call this from State.dispose()
+}
+```
+
+A few things to notice:
+
+- `onDone` runs when the socket closes, so both `onError` and `onDone` trigger a reconnect.
+- `_retryDelay` doubles each time and is capped, so retries slow down instead of hammering the server.
+- After a successful connect, the delay resets to 1 second.
+- Everything is cancelled in `_cleanUp()` — the timer, the subscription, and the sink — so nothing leaks.
+
+You can also read the close code after the socket ends, to decide what to do:
+
+```dart
+final code = _channel?.closeCode; // e.g. 1000 normal, 1006 dropped
+```
+
 ## How I would answer this in an interview
 
 > "A WebSocket is a persistent, two-way connection. Unlike REST, where the app asks and the server answers and then closes, a WebSocket stays open so the server can push data at any time — which is what you want for chat or live updates. It starts as an HTTP request with an Upgrade header, and the server replies with 101 Switching Protocols, then the same connection becomes a WebSocket. In production I use `wss` over TLS. The lifecycle is connect, open, messages, then close or error, and close codes like 1006 tell me the connection dropped so I should reconnect — usually with exponential backoff, plus a ping/pong heartbeat to detect silent drops. In Flutter I use `web_socket_channel`, which gives me a stream, and I always close the socket in dispose to avoid leaks."
