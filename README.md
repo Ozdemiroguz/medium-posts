@@ -18,6 +18,7 @@ Written and published on Medium. This repo holds the source and the images.
 | [Mixin vs Abstract vs Interface](dart-mixin-abstract-interface.md) | `extends` vs `implements` vs `with`, and when to use each |
 | [The Three Trees](flutter-three-trees.md) | Widget, Element, RenderObject — and why `const`, keys, and cheap rebuilds work |
 | [Records & Pattern Matching](dart-records-patterns.md) | Dart 3 records, destructuring, pattern `switch`, guards, and `if-case` |
+| [Signals in Flutter](flutter-signals.md) | Fine-grained, synchronous reactive state — `signal`, `computed`, `effect`, `Watch`, `batch` |
 
 ## About the images
 
