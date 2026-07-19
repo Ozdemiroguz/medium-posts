@@ -19,6 +19,8 @@ Written and published on Medium. This repo holds the source and the images.
 | [The Three Trees](flutter-three-trees.md) | Widget, Element, RenderObject — and why `const`, keys, and cheap rebuilds work |
 | [Records & Pattern Matching](dart-records-patterns.md) | Dart 3 records, destructuring, pattern `switch`, guards, and `if-case` |
 | [Signals in Flutter](flutter-signals.md) | Fine-grained, synchronous reactive state — `signal`, `computed`, `effect`, `Watch`, `batch` |
+| [State Management](flutter-state-management.md) | setState vs Bloc/Cubit vs Riverpod, and how to choose |
+| [Dependency Injection](flutter-dependency-injection.md) | DI with `get_it` — loose coupling, easy tests, register/get patterns |
 
 ## About the images
 
