@@ -21,6 +21,9 @@ Written and published on Medium. This repo holds the source and the images.
 | [Signals in Flutter](flutter-signals.md) | Fine-grained, synchronous reactive state — `signal`, `computed`, `effect`, `Watch`, `batch` |
 | [State Management](flutter-state-management.md) | setState vs Bloc/Cubit vs Riverpod, and how to choose |
 | [Dependency Injection](flutter-dependency-injection.md) | DI with `get_it` — loose coupling, easy tests, register/get patterns |
+| [Event Tracking & Attribution](flutter-event-tracking.md) | Facebook/TikTok/AppsFlyer SDKs, standard vs custom events, ATT & SKAdNetwork |
+| [Analytics & Crash Reporting](flutter-analytics-crash.md) | Firebase/Sentry, catching every error source, fatal vs non-fatal, breadcrumbs |
+| [Flutter 3.44 & Dart 3.12](flutter-3-44-whats-new.md) | Dot shorthands, private named params, Impeller-only Android, AI-agentic tooling |
 
 ## About the images
 
